@@ -1,0 +1,53 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+				<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+				<i class="fas fa-bell fa-fw"></i>
+				Notifications
+		</ion-title>
+		<ion-buttons slot="end">
+			<ion-menu-button autoHide="false"></ion-menu-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<table class="table" *ngIf="notifications!=null">
+		<thead>
+			<tr>
+				<th>
+					<i class="fas fa-bell fa-fw tx-purple"ng></i>
+					<br>
+					Click baris yg kuning (
+					<i class="tx-red">
+						notif baru
+					</i>
+					)
+					<br>
+					<small>
+						untuk menandakan sudah di baca
+					</small>
+				</th>
+			</tr>
+		</thead>
+		<tbody *ngFor="let notif of notifications">
+			<tr [ngClass]="{'highlighted':notif.viewed==0}">
+				<td (click)="notifclicked(notif.id)">
+					{{notif.id}}.
+					<b>
+						{{notif.title}}
+					</b>
+					<small class="tx-gray">
+						{{notif.created_at}}
+					</small>
+					<br>
+					<small>
+						{{notif.content}}
+					</small>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</ion-content>

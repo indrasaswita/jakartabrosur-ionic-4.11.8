@@ -1,0 +1,36 @@
+
+
+<ion-content>
+	
+	<div style="height: 100%; display: grid; justify-content: center; align-items: center; margin: 20px 10px;">
+		<div class="size-36">
+			Hello, <br>
+			<b>{{global.userdata.name}}</b>.
+		</div>
+		<div class="size-14 text-tx-center">
+			Welcome to Jakartabrosur Digital Apps.
+		</div>
+
+	</div>
+
+    <div class="btn-group">
+        <div class="btn-group">
+            <button class="btn" (click)="navSales()">
+                Sale
+            </button>
+            <button class="btn" (click)="navCust()">
+                Cust
+            </button>
+            <button class="btn" (click)="navNotif()">
+                Notif
+            </button>
+            <button class="btn" (click)="navContact()">
+                Contact
+            </button>
+            <button class="btn" (click)="navPrice()">
+                Price
+            </button>
+        </div>
+    </div>
+
+</ion-content>

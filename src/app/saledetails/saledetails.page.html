@@ -1,0 +1,167 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			SalesID #{{data.id|number:0}} 
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+	<div class="content-wrapper">
+		<div class="list-standard header highlighted primary">
+			<div class="list-header">
+				DETIL PENJUALAN
+			</div>
+			<ul>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fab fa-slack-hash fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							{{global.zeroFill(data.id, 4)}}
+						</div>
+					</div>
+				</li>
+				<li class="list-sm" *ngIf="data.name.length>0">
+					<div class="avatar">
+						<i class="fal fa-file-signature fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							{{data.name}}
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-badge-dollar fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Belanja
+							<span class="pull-xs-right">
+								Rp <b>{{data.totalprice|number:0}}</b>
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-badge-dollar fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Bayar
+							<span class="pull-xs-right">
+								Rp <b>{{data.totalpayment|number:0}}</b>
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-calendar-alt fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							{{data.created_at|date:'dd MMMM yyyy, HH:mm:ss'}}
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="list-standard header highlighted success">
+			<div class="list-header">
+				DETIL PELANGGAN
+			</div>
+			<ul>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-user-tie fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							{{data.customer.name}}
+						</div>
+					</div>
+				</li>
+				<ng-container *ngIf="data.customer.company!=null">
+					<li class="list-sm">
+						<div class="avatar">
+							<i class="fal fa-car-building fa-fw"></i>
+						</div>
+						<div class="label">
+							<div class="label-content">
+								{{data.customer.company.name}}
+							</div>
+						</div>
+					</li>
+					<li class="list-sm" *ngIf="data.customer.company.parentcompany != null">
+						<div class="avatar">
+							<i class="fal fa-industry-alt fa-fw"></i>
+						</div>
+						<div class="label">
+							<div class="label-content">
+								{{data.customer.company.parentcompany.name}}
+							</div>
+						</div>
+					</li>
+				</ng-container>
+			</ul>
+		</div>
+		<ng-container *ngFor="let salesdetail of data.salesdetail">
+			<div class="list-standard highlighted warning" (click)="toggleCartheader(salesdetail.cartheader)">
+				<div class="list-header">
+					DETIL PEMBELANJAAN SATUAN
+				</div>
+				<ul>
+					<li class="list-sm">
+						<div class="avatar">
+							<i class="fal fa-file-signature fa-fw"></i>
+						</div>
+						<div class="label">
+							<div class="label-content">
+								{{salesdetail.cartheader.jobtitle}}
+							</div>
+						</div>
+					</li>
+					<li class="list-sm">
+						<div class="avatar">
+							<i class="fal fa-boxes-alt fa-fw"></i>
+						</div>
+						<div class="label">
+							<div class="label-content">
+								{{salesdetail.cartheader.quantity}}
+								{{salesdetail.cartheader.quantitytypename}}
+							</div>
+						</div>
+					</li>
+					<li class="list-sm">
+						<div class="avatar">
+							<i class="fal fa-badge-dollar fa-fw"></i>
+						</div>
+						<div class="label">
+							<div class="label-content">
+								{{(salesdetail.cartheader.printprice+salesdetail.cartheader.deliveryprice-salesdetail.cartheader.discount)|number:0}}
+							</div>
+						</div>
+					</li>
+					<li class="list-sm">
+						<div class="label">
+							<div class="label-content text-xs-center">
+								<i class="size-70p tx-gray">Tap disini untuk lihat lebih lanjut</i>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</ng-container>
+	</div>
+
+</ion-content>

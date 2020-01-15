@@ -1,0 +1,65 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			<i class="fal fa-sun fa-fw"></i>
+			Master
+		</ion-title>
+		<ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+	</ion-toolbar>
+</ion-header>
+	
+
+<ion-content>
+	<div class="background-wrapper">
+		<div class="icon xxl">
+			<i class="fal fa-crown fa-fw"></i>
+			<div class="text">
+				In master, you can see main database, that should read for calculating and processing transaction. Master is the brain of Jakartabrosur program.
+			</div>
+
+
+			<ul class="text menus">
+				<li>
+					<i class="fal fa-scroll-old fa-fw icon"></i>
+					<div class="content">
+						View Paper Price + Details
+					</div>
+					<i class="fas fa-check fa-fw icon" *ngIf="global.papers.length>0"></i>	
+				</li>
+				<li>
+					<i class="fal fa-warehouse fa-fw icon"></i>
+					<div class="content">
+						View Papershops and Vendors
+					</div>
+				</li>
+				<li>
+					<i class="fal fa-dryer fa-fw icon"></i>
+					<div class="content">
+						View Finishings + Options
+					</div>
+				</li>
+				<li>
+					<i class="fal fa-toggle-on fa-fw icon"></i>
+					<div class="content">
+						Jobsubtype Activation + Details
+					</div>
+				</li>
+				<li>
+					<i class="fal fa-scanner fa-fw icon"></i>
+					<div class="content">
+						Expense Price Lists
+					</div>
+					<i class="fas fa-check fa-fw icon" *ngIf="global.expenseprices.length>0"></i>	
+				</li>
+			</ul>
+
+			<div class="loading" *ngIf="global.cartsdownloading||global.salesdownloading">
+			</div>
+		</div>
+	</div>
+</ion-content>

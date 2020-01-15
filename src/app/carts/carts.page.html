@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+    <ion-title>
+			All Pending Carts
+		</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ng-container *ngIf="carts!=null">
+		<div class="text-xs-center" *ngIf="carts.length == 0">
+			No Pending Cart
+		</div>
+		<ng-container *ngIf="carts.length > 0">
+			<div class="content-title">
+				Cart Header
+				<div class="content-subtitle">
+					Click a card to see details
+				</div>
+			</div>
+			<div class="text-xs-right">
+				<input type="text">
+				<button class="btn">
+					<i class="fal fa-search fa-fw"></i>
+				</button>
+			</div>
+			<ul class="three-column">
+				<ng-container *ngFor = 'let cartheader of carts'>
+					<li (click)="toggleCartheader(cartheader)">
+						<div class="header-id">
+							<b>#{{global.zeroFill(cartheader.id, 3)}}</b>
+
+							<span class="pull-xs-right">
+								<small>
+									Rp
+								</small> 
+								<b>
+									{{(cartheader.printprice+cartheader.deliveryprice-cartheader.discount)|number:0}}
+								</b>
+							</span>
+						</div>
+						<div class="content">
+							<div class="pretitle">
+								<i class="fal fa-user fa-fw"></i>
+								{{global.singkatText(cartheader.customer.name, 15, '')}}
+							</div>
+							<div class="title-wrapper">
+								<div class="title">
+									<div>
+										{{cartheader.quantity|number:0}}
+										{{global.singkatText(cartheader.jobsubtype.name, 16, 0)}}
+									</div>
+									<div class="text-bold">
+										<ng-container *ngIf="cartheader.cartfile != null">
+											<ng-container *ngIf="cartheader.cartfile.length==0">
+												{{global.singkatText(cartheader.jobtitle, 16, "")}}
+											</ng-container>
+											<ng-container *ngIf="cartheader.cartfile.length>0">
+												{{global.singkatText(cartheader.jobtitle, 9, "")}}
+												<span class="tx-primary" >
+													<i class="fal fa-copy fa-fw"></i>
+													{{cartheader.cartfile.length|number:0}} file
+												</span>
+											</ng-container>
+										</ng-container>
+										<ng-container *ngIf="cartheader.cartfile==null">
+											{{global.singkatText(cartheader.jobtitle, 16, "")}}
+										</ng-container>
+									</div>
+								</div>
+							</div>
+							<div class="post-title">
+								<span class="uppercase">
+									{{cartheader.processtype}}
+								</span>:
+								<i class="fal fa-print fa-fw"></i> 
+								{{cartheader.processtime}}d + 
+								<i class="fal fa-truck-loading"></i>
+								{{cartheader.deliverytime}}d
+							</div>
+						</div>
+					</li>
+				</ng-container>
+			</ul>
+		</ng-container>
+	</ng-container>
+
+	<button class="btn" (click)="haha()">
+		haha
+	</button>
+
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <i class="far fa-clipboard-list fa-fw"></i>
+      Customer & Sales
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-subtitle>Get Started</ion-card-subtitle>
+      <ion-card-title> QR Code and Barcode </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Here we can scan a Qr code or Barcode to get data and we will also see how to generate Barcode.</p>
+    </ion-card-content>
+    <ion-button (click)="goToBarcodeScan()">Click to scan a barcode</ion-button>
+  </ion-card>
+
+</ion-content>

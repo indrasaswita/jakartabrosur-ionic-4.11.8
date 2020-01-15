@@ -1,0 +1,73 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			<i class="fal fa-eye fa-fw"></i>
+			Admin Sales Viewer
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="text-xs-center" *ngIf="sales.length == 0">
+		No Pending Cart
+	</div>
+	<ng-container *ngIf="sales.length > 0">
+		<div class="content-title">
+			Sale Header
+			<div class="content-subtitle">
+				Click a card to see details
+			</div>
+		</div>
+		<div class="text-xs-right">
+			<input type="text">
+			<button class="btn">
+				<i class="fal fa-search fa-fw"></i>
+			</button>
+		</div>
+		<ul class="three-column">
+			<ng-container *ngFor = 'let saleheader of sales'>
+				<li (click)="toggleSaleheader(saleheader)">
+					<div class="header-id">
+						<b>{{saleheader.id}}</b>
+
+						<span class="pull-xs-right">
+							<small>
+								Rp
+							</small>
+							<b>
+
+							</b>
+						</span>
+					</div>
+					<div class="content">
+						<div class="pretitle">
+
+						</div>
+						<div class="title">
+							<div class="" *ngFor="let saledetail of saleheader.salesdetail">
+								{{saledetail.cartheader.jobsubtype.name}}: {{saledetail.cartheader.jobtitle}}
+							</div>
+						</div>
+
+						<div class="post-title">
+							<i class="fal fa-clock fa-fw">
+							</i>
+							{{saleheader.created_at}}
+						</div>
+					</div>
+				</li>
+			</ng-container>
+		</ul>
+	</ng-container>
+
+	<ion-infinite-scroll threshold="100px" (ionInfinite)="doloaddata($event)">
+		<ion-infinite-scroll-content
+			loadingSpinner="bubbles"
+			loadingText="Loading more data...">
+		</ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+
+</ion-content>

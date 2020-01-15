@@ -1,0 +1,47 @@
+.btn-ungu {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #70a;
+  font-weight: bold;
+  color: white;
+  margin: 15px 0px;
+  position: absolute;
+  right: 5px;
+}
+
+.title-wrapper {
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  font-family: "Google Sans";
+}
+.title-wrapper .image {
+  border: 2px solid #999;
+  border-radius: 1000px;
+  width: 150px;
+  height: 150px;
+  display: -moz-inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
+}
+.title-wrapper .title {
+  margin-top: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #777;
+}
+.title-wrapper .jobtitle {
+  font-size: 90%;
+  font-weight: bold;
+  font-style: italic;
+  color: #204;
+}
+
+.detail-wrapper {
+  padding: 0 10px;
+}
+
+/*# sourceMappingURL=cartdetails.page.css.map */

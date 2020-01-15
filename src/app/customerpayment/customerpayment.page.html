@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <i class="fas fa-cash-register fa-fw"></i>
+      Customer & Payment
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="text-xs-center line-11" *ngIf="customererror==true" style="margin:30px 0;">
+		No Customer Data Received
+		<small>
+			<b>
+				( Error ketika terima data )
+			</b>
+		</small>
+	</div>
+	<table class="table" *ngIf="customererror==false">
+		<thead>
+			<tr>
+				<th class="text-xs-left">Customers</th>
+				<th>Phone Num.</th>
+				<th class="text-xs-right">Payment</th>
+			</tr>
+		</thead>
+		<tbody *ngFor="let customer of customers">
+		<tr>
+			<td class="text-xs-left">{{customer.name}}</td>
+			<td>{{customer.phone1}}</td>
+			<td></td>
+		</tr>
+		</tbody>
+	</table>
+</ion-content>

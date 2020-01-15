@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Google';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/localfonts/GoogleSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Google';
+  font-style: normal;
+  font-weight: bold;
+  src: url('../assets/localfonts/GoogleSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Google';
+  font-style: italic;
+  font-weight: normal;
+  src: url('../assets/localfonts/GoogleSans-Italic.ttf');
+}
+
+@font-face {
+  font-family: 'Google';
+  font-style: italic;
+  font-weight: bold;
+  src: url('../assets/localfonts/GoogleSans-BoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Google';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../assets/localfonts/GoogleSans-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Google';
+  font-style: italic;
+  font-weight: 600;
+  src: url('../assets/localfonts/GoogleSans-MediumItalic.ttf');
+}
+
+ion-app{
+  font-family: "Google Sans";
+}

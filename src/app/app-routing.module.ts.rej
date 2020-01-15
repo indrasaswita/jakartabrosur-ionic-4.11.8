@@ -1,0 +1,9 @@
+diff a/src/app/app-routing.module.ts b/src/app/app-routing.module.ts	(rejected hunks)
+@@ -34,6 +34,7 @@
+   { path: 'user', loadChildren: './user/user.module#UserPageModule' },
+   { path: 'confirmationbyemployee', loadChildren: './confirmationbyemployee/confirmationbyemployee.module#ConfirmationbyemployeePageModule' },
+   { path: 'cetaksuratjalan', loadChildren: './cetaksuratjalan/cetaksuratjalan.module#CetaksuratjalanPageModule' },
++  { path: 'editcustomerbankacc', loadChildren: './editcustomerbankacc/editcustomerbankacc.module#EditcustomerbankaccPageModule' }
+ 
+ ];
+ @NgModule({

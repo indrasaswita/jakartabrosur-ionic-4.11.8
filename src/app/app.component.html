@@ -1,0 +1,269 @@
+<ion-app>
+  <ion-menu class="submenu" contentId="submenu" menu-id="menu-salelist" side="end" type="push">
+    <ion-header class="submenu-header">
+      <div class="header-title">
+        TRANSACTION
+      </div>
+    </ion-header>
+    <ion-content class="submenu-content">
+      <ul>
+        <li>
+          <button class="button" (click)="gotoCartsActivity()">
+            <i class="fal fa-list fa-fw icon"></i>
+            <div class="content">
+              All Pending Carts
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button" (click)="gotoSalesActivity()">
+            <i class="fal fa-list fa-fw icon"></i>
+            <div class="content">
+              Sales Activity
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button">
+            <i class="fal fa-bookmark fa-fw icon"></i>
+            <div class="content">
+              Sales Need To-Do
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button">
+            <i class="fal fa-filter fa-fw icon"></i>
+            <div class="content">
+              Sales Filter & Search
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button">
+            <i class="fal fa-chart-network fa-fw icon"></i>
+            <div class="content">
+              Join Cart <small class="fal fa-chevron-double-right"></small> Sale
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button">
+            <i class="fal fa-envelope-open-dollar fa-fw icon"></i>
+            <div class="content">
+              Our Expense & Purchase
+            </div>
+          </button>
+        </li>
+      </ul>
+    </ion-content>
+  </ion-menu>
+  <ion-menu class="submenu" contentId="submenu" menu-id="menu-alluser" side="end" type="push">
+    <ion-header class="submenu-header">
+      <div class="header-title">
+        ALL USER EDITOR
+      </div>
+    </ion-header>
+    <ion-content class="submenu-content">
+      <ul>
+        <li>
+          <button class="button" (click)="gotoEmployeeActivity()">
+            <i class="fal fa-user-cog fa-fw icon"></i>
+            <div class="content">
+              Employee and Roles
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button" (click)="gotoSalesActivity()">
+            <i class="fal fa-user-plus fa-fw icon"></i>
+            <div class="content">
+              Add New Employee Acc.
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button">
+            <i class="fal fa-cogs fa-fw icon"></i>
+            <div class="content">
+              Roles Detail
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button" (click)="gotoCustomerActivity()">
+            <i class="fal fa-users-class fa-fw icon"></i>
+            <div class="content">
+              Customers Detail
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button" (click)="gotoCustomerPayment()">
+            <i class="fal fa-user-clock fa-fw icon"></i>
+            <div class="content">
+              Customer & Payment
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button" (click)="gotoCustomerSales()">
+            <i class="fal fa-user-chart fa-fw icon"></i>
+            <div class="content">
+              Customer & Sales
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button" (click)="gotoNewCustomer()">
+            <i class="fal fa-users-medical fa-fw icon"></i>
+            <div class="content">
+              Add New Customer by Admin
+            </div>
+          </button>
+        </li>
+      </ul>
+    </ion-content>
+  </ion-menu>
+  <ion-menu class="submenu" contentId="submenu" menu-id="menu-master" side="end" type="push">
+    <ion-header class="submenu-header">
+      <div class="header-title">
+        DATABASE MASTER
+      </div>
+    </ion-header>
+    <ion-content class="submenu-content">
+      <ul>
+        <li>
+          <button class="button" (click)="gotoSalesActivity()">
+            <i class="fal fa-scroll-old fa-fw icon"></i>
+            <div class="content">
+              View Paper Price + Details
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button" (click)="gotoSalesActivity()">
+            <i class="fal fa-warehouse fa-fw icon"></i>
+            <div class="content">
+              View Papershops and Vendors
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button">
+            <i class="fal fa-dryer fa-fw icon"></i>
+            <div class="content">
+              View Finishings + Options
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button">
+            <i class="fal fa-toggle-on fa-fw icon"></i>
+            <div class="content">
+              Jobsubtype Activation + Details
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button" (click)="gotoExpensepricelist()">
+            <i class="fal fa-scanner fa-fw icon"></i>
+            <div class="content">
+              Expense Price Lists
+            </div>
+          </button>
+        </li>
+      </ul>
+    </ion-content>
+  </ion-menu>
+  <ion-menu class="submenu" contentId="submenu" menu-id="menu-notification" side="end" type="push">
+    <ion-header class="submenu-header">
+      <div class="header-title">
+        NOTIFICATIONS
+      </div>
+    </ion-header>
+    <ion-content class="submenu-content">
+      <ul>
+        <li>
+          <button class="button" (click)="gotoSalesActivity()">
+            <i class="fal fa-bell-plus fa-fw icon"></i>
+            <div class="content">
+              Make Broadcast via Notification
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button" (click)="gotoSalesActivity()">
+            <i class="fal fa-bells fa-fw icon"></i>
+            <div class="content">
+              See Broadcast History
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button">
+            <i class="fal fa-bell-exclamation fa-fw icon"></i>
+            <div class="content">
+              Transaction Notif. from Customer
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button">
+            <i class="fal fa-bell-plus fa-fw icon"></i>
+            <div class="content">
+              Make Broadcast for Employee
+            </div>
+          </button>
+        </li>
+      </ul>
+    </ion-content>
+  </ion-menu>
+  <ion-menu class="submenu" contentId="submenu" menu-id="menu-user" side="end" type="push">
+    <ion-header class="submenu-header">
+      {{global.userdata.name}}
+    </ion-header>
+    <ion-content class="submenu-content">
+      <ul>
+        <li>
+          <button class="button" (click)="gotoSalesActivity()">
+            <i class="fal fa-bullhorn fa-fw icon"></i>
+            <div class="content">
+              WA: Chat to Spesific Customer
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button" (click)="gotoSalesActivity()">
+            <i class="fal fa-bullhorn fa-fw icon"></i>
+            <div class="content">
+              WA: Chat to Group
+            </div>
+          </button>
+        </li>
+        <li>
+          <button class="button" (click)="doLogout()">
+            <i class="fal fa-power-off fa-fw icon"></i>
+            <div class="content">
+              Log Out
+            </div>
+          </button>
+        </li>
+      </ul>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="submenu" main></ion-router-outlet>
+
+  <div class="errormessage-wrapper" [ngClass]="{'show':global.errormessageshow}">
+    <div class="errormessage" (click)="global.hideerror()">
+      {{global.errormessage}}
+    </div>
+  </div>
+  <div class="loadingmessage-wrapper" *ngIf="global.loadingshow">
+    <div class="loadingmessage">
+      <i class="fas fa-spin fa-spinner fa-4x"></i> <br>
+      Loading...
+    </div>
+  </div>
+</ion-app>

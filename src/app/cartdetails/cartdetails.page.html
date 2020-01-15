@@ -1,0 +1,415 @@
+<ion-header>
+  <ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+    <ion-title>
+			CartID #{{data.id|number:0}} 
+		</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<!-- <div class="subtab-group">
+		<button class="subtab active" (click)="setTab('carts')">
+			Carts
+		</button>
+		<button class="subtab" (click)="setTab('sales')">
+			Sales
+		</button>
+	</div> -->
+
+	<div class="title-wrapper">
+		<div class="image">
+			<img src="../assets/jobsubtypeicons/{{data.jobsubtype.icon}}" class="obj-fit">
+		</div>
+		<div class="title">
+			{{data.jobsubtype.name}}
+		</div>
+		<div class="jobtitle">
+			{{data.jobtitle}}
+		</div>
+	</div>
+
+	<button class="btn btn-sm btn-ungu" (click)="konfirmasi(null)">
+		TEST
+	</button>
+
+	<div class="detail-wrapper">
+		<div class="list-standard header highlighted primary">
+			<div class="list-header">
+				DETIL PEKERJAAN
+			</div>
+			<ul>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-boxes fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Jadi:
+							<span class="pull-xs-right">
+								<b>{{data.quantity|number:0}}</b>
+								{{data.quantitytypename}}
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-dumbbell fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							&plusmn;
+							{{data.totalweight}}kg
+							&nbsp;&nbsp;
+							<i class="fas fa-long-arrow-right fa-fw"></i>
+							&nbsp;&nbsp;
+							<i class="fal fa-boxes-alt fa-fw"></i>
+							&nbsp;
+							{{data.totalpackage}}	pack
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-badge-dollar fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Print:
+							<span class="pull-xs-right">
+								{{data.printprice|number:0}}
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-badge-dollar fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Discount:
+							<span class="pull-xs-right">
+								- {{data.discount|number:0}}
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-badge-dollar fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content text-bold">
+							Total:
+							<span class="pull-xs-right">
+								{{(data.printprice+data.deliveryprice-data.discount)|number:0}}
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-badge-dollar fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Buy:
+							<span class="pull-xs-right">
+								{{(data.buyprice)|number:0}}
+							</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="list-standard header highlighted primary">
+			<div class="list-header">
+				DETIL PENGIRIMAN
+			</div>
+			<ul>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-truck-container fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Name:
+							<span class="pull-xs-right">
+								{{data.delivery.deliveryname}}
+								<span class="uppercase size-80p tx-primary">
+									<b><i>{{data.delivery.deliverytype}}</i></b>
+								</span>
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm" *ngIf="data.deliveryaddress!=null">
+					<div class="avatar">
+						<i class="fal fa-location-arrow fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							{{data.deliveryaddress.address}}
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-badge-dollar fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Delivery:
+							<span class="pull-xs-right">
+								{{data.deliveryprice|number:0}}
+							</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+
+		<div class="list-standard highlighted success" *ngIf="data.cartfile.length>0">
+			<div class="list-header">
+				DETIL FILES
+			</div>
+			<ul>
+				<li class="list-sm" *ngFor="let cartfile of data.cartfile; let i = index">
+					<div class="image">
+						<img src="..\assets\ext\{{cartfile.file.path.substring(cartfile.file.path.lastIndexOf('.')+1)}}.png">
+					</div>
+					<div class="label">
+						<div class="label-content">
+							{{cartfile.file.filename}}
+							<br>
+							Filesize:
+							<ng-container *ngIf="cartfile.file.size<1024">
+								{{cartfile.file.size}} B
+							</ng-container>
+							<ng-container *ngIf="cartfile.file.size>=1024 && cartfile.file.size<(1024*1024)">
+								{{(cartfile.file.size/1024)|number:0}} MB
+							</ng-container>
+							<ng-container *ngIf="cartfile.file.size>=(1024*1024) && cartfile.file.size<(1024*1024*1024)">
+								{{(cartfile.file.size/1024/1024)|number:0}} MB
+							</ng-container>
+							<ng-container *ngIf="cartfile.file.size>=(1024*1024*1024) && cartfile.file.size<(1024*1024*1024*1024)">
+								{{(cartfile.file.size/1024/1024/1024)|number:0}} GB
+							</ng-container>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+
+		<div class="list-standard highlighted warning" *ngFor="let cartdetail of data.cartdetail; let i = index">
+			<div class="list-header">
+				<i class="fas fa-chevron-left tx-warning"></i>{{i+1}}<i class="fas fa-chevron-right tx-warning"></i>
+				<b>
+					#{{global.zeroFill(cartdetail.id, 4)}}
+					<span class="uppercase">
+						{{cartdetail.cartname}}
+					</span>
+					<span class="pull-xs-right">
+						<i class="fal fa-print fa-fw"></i>
+						{{cartdetail.printer.machinename}}
+					</span>
+				</b>
+			</div>
+			<ul>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-scroll-old fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							<span class="size-70p uppercase">
+								<b><i>{{cartdetail.paper.papertype.name}}</i></b>
+							</span>
+							<br>
+							{{cartdetail.paper.name}}
+							{{cartdetail.paper.gramature}}g
+							{{cartdetail.paper.color}}
+						</div>
+					</div>
+				</li>
+
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-home-lg fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Toko:
+							<span class="pull-xs-right">
+								{{cartdetail.vendor.name}}
+							</span><br>
+							<span class="pull-xs-right size-80p text-bold">
+								<ng-container *ngIf="cartdetail.vendor.phone1!=''">
+									<i class="fal fa-phone-alt fa-fw"></i>
+									{{cartdetail.vendor.phone1}}
+								</ng-container>
+								<ng-container *ngIf="cartdetail.vendor.phone2!=''">
+									<i class="fal fa-phone-alt fa-fw"></i>
+									{{cartdetail.vendor.phone2}}
+								</ng-container>
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-pallet-alt fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Plano:
+							<span class="pull-xs-right">
+								{{cartdetail.totalplano}} lembar
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-pallet-alt fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Uk. Plano:
+							<span class="pull-xs-right">
+								{{cartdetail.plano.width}}x{{cartdetail.plano.length}} cm
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-badge-dollar fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Harga Kertas:
+							<span class="pull-xs-right">
+								&plusmn;
+								{{cartdetail.totalpaperprice|number:0}}
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-pallet-alt fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							1 lembar plano dibelah {{cartdetail.totalinplano}}
+							(
+							<b>{{cartdetail.totalinplanox}}</b>x<b>{{cartdetail.totalinplanoy}}</b>+<b>{{cartdetail.totalinplanorest}}</b>
+							)
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-pallet fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Print:
+							<span class="pull-xs-right">
+								{{(cartdetail.totaldruct)|number:0}} druct
+								<i class="size-80p">+ins.</i> {{cartdetail.inschiet|number:0}}
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-pallet fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Uk. Print:
+							<span class="pull-xs-right">
+								{{cartdetail.printwidth}}x{{cartdetail.printlength}} cm
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-pallet fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							1 lembar print jalan {{cartdetail.totalinprint}}
+							(
+							<b>{{cartdetail.totalinprintx}}</b>x<b>{{cartdetail.totalinprinty}}</b>+<b>{{cartdetail.totalinprintrest}}</b>
+							)
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-box fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Uk. Jadi:
+							<span class="pull-xs-right">
+								{{cartdetail.imagewidth}}x{{cartdetail.imagelength}} cm
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-pallet fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Warna:
+							<span class="pull-xs-right">
+								{{cartdetail.side1}} / {{cartdetail.side2}}
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-sm">
+					<div class="avatar">
+						<i class="fal fa-pallet fa-fw"></i>
+					</div>
+					<div class="label">
+						<div class="label-content">
+							Warna:
+							<span class="pull-xs-right">
+								{{cartdetail.side1}} / {{cartdetail.side2}}
+							</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<br><br><br>
+
+	<div class="content-wrapper">
+		<div class="action action-bottom">
+			<button class="btn btn-secondary">
+				Join Cart
+			</button>
+			<button class="btn btn-secondary">
+				Print
+			</button>
+		</div>
+	</div>
+
+	
+</ion-content>

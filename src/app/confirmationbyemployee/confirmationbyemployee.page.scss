@@ -1,0 +1,146 @@
+.div-header{
+	margin: 10px;
+	font-size: 18px;
+}
+
+.form-bottom{
+	display: flex;
+	width: 100%;
+}
+.btn-conf{
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	background-color: #70a;
+	font-weight: bold;
+	color: white;
+	width: 100%;
+	font-size: 12px;
+}
+
+.btn-info{
+	margin-left: 10px;
+}
+
+.btn-actionline{
+	line-height: 1;
+	margin: 2px;
+	background-color: purple;
+	color: white;
+	&+{
+		margin-left: 0;
+	}
+}
+
+.input-conf{
+	font-size: 12px;
+	font-family: Google;
+	font-weight: 100;
+	color: #306;
+	border: 1px solid #aaa;
+	border-radius: 6px;
+	width: 50%;
+	&:hover{
+		border-color: #0d81ff;
+	}
+
+	&:focus,
+	&:focus:hover{
+		box-shadow: 0 0 5px 5px rgba(0,0,0,.05);
+		border-color: #0d81ff;
+	}
+}
+
+.select-text {
+	-ms-flex: 1;
+	flex: 1;
+	min-width: 16px;
+	font-size: inherit;
+	text-overflow: ellipsis;
+	white-space: normal !important;
+	overflow: hidden;
+}
+
+.btn-payment {
+	border: 1px outset #306;
+	border-radius: 5px;
+	line-height: 2.5;
+	width: 50%;
+	margin: 2px;
+	color: #70a;
+	background-color: #ffe;
+	cursor: pointer;
+	&+ button{
+		margin-left: 0;
+	}
+	&:focus{
+		background-color: #70a;
+		color: white;
+	}
+}
+
+.data-wrapper{
+	display: flex;
+	height: 100%;
+	.data-left{
+		width: 100%;
+		display: block;
+		.left-top{
+			width: 100%;
+		}
+		.left-bottom{
+			width: 100%;
+			.button-wrapper {
+				display: flex;
+				width: 100%;
+			}
+			.table{
+        tbody{
+					border-width: 2px 0;
+					border-color: rgba(0,0,0,.5);
+					border-style: solid;
+        }
+				.header{
+					.detail{
+						td{
+							padding: 8px 2px;
+							cursor: pointer;
+						}
+					}
+					.total{
+						td{
+							padding: 2px 2px;
+							cursor: pointer;
+						}
+					}
+					&:hover{
+						.payment{
+							background-color: rgba(0,0,0,.05);
+						}
+					}
+					.payment{
+						td{
+							padding: 8px 2px;
+							background-color: #ffe;
+							cursor: pointer;
+						}
+						&:hover{
+							background-color: rgba(0,0,0,.1);
+						}
+					}
+				}
+			}
+		}
+	}
+	.data-right{
+		width: 100%;
+		display: block;
+		.detailtransaksibank-wrapper{
+			display: block;
+			overflow: scroll;
+			height: 100%;
+		}
+	}
+}
+
+
+

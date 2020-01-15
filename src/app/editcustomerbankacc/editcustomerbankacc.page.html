@@ -1,0 +1,62 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			<i class="far fa-piggy-bank fa-fw"></i>
+			Customer Bank <span class="role">EDIT</span>
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="editcustomerbank-wrapper">
+		<div class="list-standard" *ngIf="customerbankacc!=null">
+			<ul>
+        <li class="list-sm no-border">
+          <div class="label">
+            <ion-item>
+              <ion-label position="stacked">Customer BANK</ion-label>
+              <ion-select [interfaceOptions]="customerbankaccOptions" interface="action-sheet" [(ngModel)]="customerbankacc.bankID" placeholder="Helloworld">
+                <ion-select-option *ngFor="let bank of banks" [selected]="bank.id==customerbankacc.bankID" selected="{{customerbankacc.bankID}}" [value]="bank.id">
+                  <ng-container *ngIf="bank.alias==''">{{bank.bankname}}</ng-container>
+                  <ng-container *ngIf="bank.alias!=''">{{bank.alias}}</ng-container>
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </li>
+				<li class="list-sm no-border">
+					<div class="label">
+            <ion-item>
+              <ion-label position="stacked">Account Name</ion-label>
+              <ion-input value="{{customerbankacc.accname}}"></ion-input>
+            </ion-item>
+					</div>
+				</li>
+        <li class="list-sm no-border">
+          <div class="label">
+            <ion-item>
+              <ion-label position="stacked">Account Number</ion-label>
+              <ion-input value="{{customerbankacc.accno}}"></ion-input>
+            </ion-item>
+          </div>
+        </li>
+        <li class="list-sm no-border">
+          <div class="label">
+            <ion-item>
+              <ion-label position="stacked">Account Location</ion-label>
+              <ion-input value="{{customerbankacc.acclocation}}"></ion-input>
+            </ion-item>
+          </div>
+        </li>
+			</ul>
+		</div>
+	</div>
+  <div class="action action-bottom" (click)="updatecustomerbankacc(customerbankacc)">
+    <button class="btn btn-purple">
+      Save
+    </button>
+  </div>
+</ion-content>

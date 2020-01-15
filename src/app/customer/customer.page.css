@@ -1,0 +1,31 @@
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+.button-group > .button {
+  -webkit-box-flex: initial;
+  -webkit-flex: initial;
+  -moz-box-flex: initial;
+  -moz-flex: initial;
+  -ms-flex: initial;
+  flex: initial;
+  padding: 0 10px;
+  width: auto;
+  min-width: 90px;
+  font-size: 14px;
+  border: 1px solid;
+}
+
+/*# sourceMappingURL=customer.page.css.map */

@@ -1,0 +1,193 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <i class="far fa-child fa-fw"></i>
+            Customer
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="text-xs-center">
+		<div class="text-xs-center line-11" *ngIf="customererror==true" style="margin:30px 0;">
+			No Customer Data Received<br>
+			<small>
+				<b>
+					( ERROR ketika terima data )
+				</b>
+			</small>
+		</div>
+		
+
+		<table class="table" *ngIf="customererror==false">
+			<tbody *ngFor="let customer of customers">
+				<tr (click)="showdetail(customer)">
+					<td>
+						{{customer.id}}.
+					</td>
+					<td>
+						<ng-container *ngIf="customer.company != null">
+							{{customer.company.name}}
+							<ng-container *ngIf="customer.company.parentcompany != null">
+								<br>
+								from {{customer.company.parentcompany.name}}
+							</ng-container><br>
+						</ng-container>
+						<b>
+							<span class="fas fa-user fa-fw" ng-class="{'tx-lightmagenta':customer.title=='Mrs.'||customer.title=='Ms.', 'tx-primary': customer.title=='Mr.'}"></span>
+							{{customer.name}}
+						</b>
+					</td>
+					<td>
+						<ng-container *ngIf="customer.salesheader!=null">
+							Total {{customer.salesheader.length}} job
+						</ng-container>
+					</td>
+				</tr>
+				<tr *ngIf="customer.showdetail">
+					<td class="td-detail" colspan="3">
+						<div class="detail-wrapper">
+							<div class="toggle-wrapper">
+								<div class="toggler" [ngClass]="{'active': customer.showcustomerbankacc}" (click)="showcustomerbankacc(customer)">
+									LIST BANK
+								</div>
+								<div class="toggler" [ngClass]="{'active': customer.showcustomerdetail}" (click)="showcustomerdetail(customer)">
+									DETAIL PELANGGAN
+								</div>
+							</div>
+							<div class="list-standard highlighted" *ngIf="customer.showcustomerdetail">
+								<div class="list-header">
+									DETIL PELANGGAN
+								</div>
+								<ul>
+									<li class="list-sm" *ngIf="customer.phone1!=null">
+										<div class="avatar">
+											<i class="fas fa-phone-alt fa-fw"></i>
+										</div>
+										<div class="label">
+											<div class="label-content">
+												Phone 1: {{customer.phone1}}
+											</div>
+										</div>
+									</li>
+									<li class="list-sm" *ngIf="customer.phone2!=null">
+										<div class="avatar">
+											<i class="fas fa-phone-alt fa-fw"></i>
+										</div>
+										<div class="label">
+											<div class="label-content">
+												Phone 2: {{customer.phone2}}
+											</div>
+										</div>
+									</li>
+									<li class="list-sm" *ngIf="customer.phone3!=null">
+										<div class="avatar">
+											<i class="fas fa-phone-alt fa-fw"></i>
+										</div>
+										<div class="label">
+											<div class="label-content">
+												Phone 3: {{customer.phone3}}
+											</div>
+										</div>
+									</li>
+									<li class="list-sm">
+										<div class="avatar">
+											<i class="fas fa-mail-bulk fa-fw"></i>
+										</div>
+										<div class="label">
+											<div class="label-content">
+												{{customer.email}}
+											</div>
+										</div>
+									</li>
+									<li class="list-sm">
+										<div class="avatar">
+											<i class="fas fa-user-tie fa-fw"></i>
+										</div>
+										<div class="label">
+											<div class="label-content">
+												{{customer.type}}
+											</div>
+										</div>
+									</li>
+									<li class="list-sm">
+										<div class="avatar">
+											<i class="fas fa-calendar-alt fa-fw"></i>
+										</div>
+										<div class="label">
+											<div class="label-content">
+												Join: {{customer.created_at|date:'dd MMMM y'}}
+											</div>
+										</div>
+									</li>
+								</ul>
+								<div class="list-header" *ngIf="customer.company!=null">
+									COMPANY
+								</div>
+								<ul>
+									<li class="list-sm" *ngIf="customer.company!=null">
+										<div class="avatar">
+											<i class="fas fa-home fa-fw"></i>
+										</div>
+										<div class="label">
+											<div class="label-title" *ngIf="customer.company.nickname!=''">
+												{{customer.company.nickname}}
+											</div>
+											<div class="label-content" *ngIf="customer.company.phone1!=null">
+												<i class="fas fa-phone-alt fa-fw tx-gray"></i>
+												{{customer.company.phone1}}
+												<ng-container *ngIf="customer.company.phone2!=null">
+													, {{customer.company.phone2}}
+												</ng-container>
+												<ng-container *ngIf="customer.company.phone3!=null">
+													, {{customer.company.phone3}}
+												</ng-container>
+											</div>
+											<div class="label-muted" *ngIf="customer.company.name!=''">
+												{{customer.company.name}}
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="list-standard highlighted" *ngIf="customer.showcustomerbankacc">
+								<div class="list-header">
+									DAFTAR BANK PELANGGAN
+								</div>
+								<ul>
+									<li class="list-action" *ngFor="let bankacc of customer.customerbankacc" (click)="goeditcustomerbankacc(customer, bankacc)">
+										<div class="avatar">
+											<ng-container *ngIf="bankacc.bank.alias!=''">
+												<img src="../assets/banks/{{bankacc.bank.alias}}.png" class="obj-fit">
+											</ng-container>
+										</div>
+										<div class="label">
+											<div class="label-title" *ngIf="bankacc.bank.alias!=''">
+												{{bankacc.bank.alias}}
+											</div>
+											<div class="label-content" *ngIf="bankacc.bank.alias==''">
+												{{bankacc.bank.bankname}}
+											</div>
+											<div class="label-content lowercase">
+												{{bankacc.accname}}
+											</div>
+											<ng-container *ngIf="bankacc.accno!=null">
+												<div class="label-muted" *ngIf="bankacc.accno!=''">
+													{{bankacc.accno}}
+												</div>
+											</ng-container>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</ion-content>

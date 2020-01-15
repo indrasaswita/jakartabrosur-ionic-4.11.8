@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <i class="fal fa-users-crown fa-fw"></i>
+			&nbsp;
+			<small>{{global.userdata.email}}</small>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false" (click)="toggleMenu()"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="single-user-wrapper">
+		<div class="header">
+			<div class="image">
+				{{global.userdata.name.charAt(0)}}
+			</div>
+			<div class="data">
+				<div class="text">
+					<div class="name">
+						{{global.userdata.name}}
+					</div>
+					<div class="role">
+						{{global.userdata.role.name}}
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="notif-preview">
+			<div class="header">
+				
+				Notifikasi
+			</div>
+			<div class="list">
+				<ol>
+					<li>hello World</li>
+					<li>Septi Bau Kentut</li>
+					<li>...</li>
+				</ol>
+			</div>
+		</div>
+      
+		<div class="loading" *ngIf="global.cartsdownloading||global.salesdownloading">
+		</div>
+  </div>
+</ion-content>

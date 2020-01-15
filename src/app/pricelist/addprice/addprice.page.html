@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <!-- <ion-back-button defaultHref="tabs/full/(pricelist:pricelist)"></ion-back-button> -->
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+    	Tambah Daftar Harga
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item>
+	    <ion-label color="primary">Judul</ion-label>
+	    <ion-input placeholder="Judul Harga" type="text" [(ngModel)]="newtitle" class="text-xs-right"></ion-input>
+	  </ion-item>
+
+		<ion-item>
+	    <ion-label color="primary">Keterangan</ion-label>
+	    <ion-input placeholder="Detail" type="text" [(ngModel)]="newdetail" class="text-xs-right"></ion-input>
+	  </ion-item>
+
+		<ion-item>
+	    <ion-label color="primary">Harga</ion-label>
+	    <ion-input placeholder="Rp xx.xxx,-" type="number" [(ngModel)]="newprice" class="text-xs-right"></ion-input>
+	  </ion-item>
+
+		<ion-item>
+		  <ion-label color="primary">Tipe Harga</ion-label>
+		  <ion-select [value]="newtype" ok-text="Okay" cancel-text="Dismiss" [(ngModel)]="newtype" interface="action-sheet" [interfaceOptions]="customActionSheetOptions">
+			  	<ion-select-option *ngFor="let types of pricetypes" [value]="types.id">{{types.name}}</ion-select-option>
+		    
+		  </ion-select>
+	  </ion-item>
+
+	  <ion-item *ngIf="addpriceerror==true">
+	  	<ion-label class="text-xs-center" color="danger">ERROR INPUT</ion-label>
+	  </ion-item>
+
+	</ion-list>
+	<button class="btn btn-submit" color='primary' (click)="addpriceclicked()">
+		Submit
+	</button>
+</ion-content>

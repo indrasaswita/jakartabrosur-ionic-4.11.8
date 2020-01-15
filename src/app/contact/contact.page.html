@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <i class="fas fa-user-astronaut fa-fw"></i>
+            Customer List
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ul *ngIf="!customerdownloading">
+    <ng-container *ngFor='let customer of customers'>
+      <li>
+        <div class="code">    
+          {{customer.id}}
+        </div>
+        <div class="content">
+          <div class="pretitle"> 
+            {{customer.email}} 
+          </div>
+          <div class="title">
+            <i class="fas fa-user tx-info" *ngIf="customer.title=='Mr.'"></i>
+            <i class="fas fa-user tx-lightmagenta" *ngIf="customer.title=='Ms.'||customer.title=='Mrs.'"></i>
+             {{customer.name}}
+          </div>
+        </div>
+        <div class="price">
+          {{customer.created_at|date:'d/M/yy'}}
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</ion-content>

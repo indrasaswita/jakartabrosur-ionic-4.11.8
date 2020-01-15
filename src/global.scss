@@ -1,0 +1,231 @@
+// http://ionicframework.com/docs/theming/
+
+.obj-fit {
+	-o-object-fit: scale-down;
+	object-fit: scale-down;
+}
+
+
+
+.display-none{
+	display: none !important;
+}
+
+ion-icon.sc-ion-back-button-md{
+	font-family: "Font Awesome 5 Pro" !important;
+	content: "\f359" !important;
+	color: #0d81ff !important;
+	font-weight: 800 !important;
+}
+
+
+ion-tab-button{
+	ion-icon{
+		display: none !important;
+	}
+}
+
+
+
+ion-select {
+	font-weight: bold;
+}
+ion-select-popover .radio-icon {
+	display: none !important;
+}
+ion-select-popover,
+ion-action-sheet,
+ion-alert {
+	ion-list ion-item {
+		--border-width: 0;
+		--inner-border-width: 0;
+		--inner-padding-end: 0;
+		--min-height: 100px;
+	}
+
+	ion-item ion-radio {
+		--color: transparent;
+		--color-checked: transparent;
+	}
+
+	.action-sheet-group.sc-ion-action-sheet-md{
+		&:last-child {
+			//button-cancel
+			margin-bottom: -4px;
+		}
+	}
+	.action-sheet-group.sc-ion-action-sheet-ios{
+		&:last-child {
+			//button-cancel
+			background-color: #aa4444;
+		}
+	}
+
+	.action-sheet-button.sc-ion-action-sheet-md,
+	.action-sheet-button.sc-ion-action-sheet-ios{
+		&:not(.action-sheet-cancel) {
+			padding: 10px 6px;
+			position: relative;
+			height: inherit;
+			background: transparent;
+			color: var(--ion-text-color-step-150, #262626);
+			font-size: 12px;
+			text-align: start;
+			contain: unset;
+			line-height: 1;
+			overflow: hidden;
+			border-bottom: 1px solid #bbb;
+			.action-sheet-button-inner.sc-ion-action-sheet-ios {
+				text-align: center;
+				padding: 0 5px;
+			}
+		}
+		&.action-sheet-cancel{
+			background-color: #aa4444;
+			height: 45px;
+			color: white;
+			font-weight: bold;
+			text-align: center;
+			span{
+				justify-content: center;
+			}
+		}
+	}
+}
+
+
+
+.line-11{ line-height: 1.1; }
+.line-10{ line-height: 1.0; }
+.line-09{ line-height: 0.9; }
+.line-08{ line-height: 0.8; }
+
+ion-content{
+	margin: 0 5px;
+}
+
+ion-header{
+	ion-title{
+		font-family: "Google Sans Medium";
+		color: #666;
+		.far,
+		.fas,
+		.fab,
+		.fad{
+			color: rgba(0,65,150, 0.5);
+			margin-right: 6px;
+		}
+		.role{
+			color: rgba(0, 65, 150, 0.5);
+			font-weight: 800;
+			font-size: 60%;
+		}
+	}
+}
+
+
+
+
+.text-bold { font-weight: bold; }
+.size-8 { font-size: 8px; }
+.size-10 { font-size: 10px; }
+.size-12 { font-size: 12px; }
+.size-14 { font-size: 14px; }
+.size-16 { font-size: 16px; }
+.size-18 { font-size: 18px; }
+.size-20 { font-size: 20px; }
+.size-22 { font-size: 22px; }
+.size-24 { font-size: 24px; }
+.size-28 { font-size: 28px; }
+.size-32 { font-size: 32px; }
+.size-36 { font-size: 36px; }
+.size-48 { font-size: 48px; }
+.size-30p { font-size: 30%; }
+.size-40p { font-size: 40%; }
+.size-50p { font-size: 50%; }
+.size-60p { font-size: 60%; }
+.size-70p { font-size: 70%; }
+.size-80p { font-size: 80%; }
+.size-90p { font-size: 90%; }
+.size-110p { font-size: 110%; }
+.size-120p { font-size: 120%; }
+.size-130p { font-size: 130%; }
+.size-140p { font-size: 140%; }
+.size-150p { font-size: 150%; }
+.size-200p { font-size: 200%; }
+
+
+.text-xs-right{ text-align: right; }
+.text-xs-center{ text-align: center; }
+.text-xs-left{ text-align: left; }
+.pull-xs-right{ float: right; }
+.pull-xs-left{ float: left; }
+.width-min{ width: 1% !important; }
+
+
+
+
+
+.fab-fixed {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+}
+
+ion-header{
+	ion-toolbar{
+		border-bottom: 2px solid #ddd;
+		--min-height: 45px;
+		ion-title{
+			font-size: 18px;
+			.logo-img{
+				padding-top: 2px;
+				display: inline-block;
+			}
+			.logo{
+				padding: 0 5px;
+				font-family: Google;
+				display: inline-block;
+				top: 4px;
+				position: absolute;
+				font-size: 20px;
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+
+ion-content {
+	--padding-start: 0 !important;
+	--padding-end: 0 !important;
+}
+
+.header-md:after{
+	background-image: none;
+}
+
+.content-title{
+	font-family: Google;
+	font-size: 30px;
+	font-weight: 100;
+	color: #999;
+	padding: 0 10px;
+	line-height: 1;
+	.content-subtitle{
+		font-size: 12px;
+		padding: 0 2px;
+	}
+}
+
+
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";

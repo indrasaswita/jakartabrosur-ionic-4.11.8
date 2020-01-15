@@ -1,0 +1,81 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			<i class="fal fa-users-crown fa-fw"></i>
+			All User
+		</ion-title>
+		<ion-buttons slot="end">
+      <ion-menu-button autoHide="false" (click)="toggleMenu()"></ion-menu-button>
+    </ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="background-wrapper">
+		<div class="icon xxl">
+			<i class="fal fa-head-side fa-fw"></i>
+			<div class="text">
+				You can see all customers and employees here. Plus, payments and sale details per customer.
+			</div>
+
+
+			<ul class="text menus">
+				<li>		
+					<i class="fal fa-user-cog fa-fw icon"></i>
+					<div class="content">
+						Employee and Roles
+					</div>
+					<i class="fas fa-check fa-fw icon" *ngIf="global.employees.length>0"></i>
+				</li>
+				<li>
+					<i class="fal fa-user-plus fa-fw icon"></i>
+					<div class="content">
+						Add New Employee Acc.
+					</div>
+					<i class="fas fa-check fa-fw icon"></i>
+				</li>
+				<li>
+					<i class="fal fa-cogs fa-fw icon"></i>
+					<div class="content">
+						Roles Detail
+					</div>
+					<i class="fas fa-check fa-fw icon" *ngIf="global.roles.length>0"></i>
+				</li>
+				<li>
+					<i class="fal fa-users-class fa-fw icon"></i>
+					<div class="content">
+						Customers Detail
+					</div>
+					<i class="fas fa-check fa-fw icon" *ngIf="global.customers.length>0"></i>
+				</li>
+				<li>
+					<i class="fal fa-user-clock fa-fw icon"></i>
+					<div class="content">
+						Customer & Payment
+					</div>
+					<i class="fas fa-check fa-fw icon" *ngIf="global.customerpayment.length>0"></i>
+				</li>
+				<li>
+					<i class="fal fa-user-chart fa-fw icon"></i>
+					<div class="content">
+						Customer & Sales
+					</div>
+					<i class="fas fa-check fa-fw icon" *ngIf="global.customersales.length>0"></i>
+				</li>
+				<li>
+					<i class="fal fa-users-medical fa-fw icon"></i>
+					<div class="content">
+						Add New Customer by Admin
+					</div>
+					<i class="fas fa-check fa-fw icon"></i>
+				</li>
+			</ul>
+
+			<div class="loading" *ngIf="global.cartsdownloading||global.salesdownloading">
+			</div>
+		</div>
+	</div>
+</ion-content>

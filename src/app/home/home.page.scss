@@ -1,0 +1,42 @@
+@-webkit-keyframes fadeLoop{
+	0%{
+		opacity: 0;
+	}
+	80%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+.loading{
+	animation-name: fadeLoop;
+	animation-duration: 1.8s;
+	animation-iteration-count: infinite;
+
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
+	text-align: center;
+}
+
+
+.btn-group-wrapper{
+	.btn-group{
+		display: flex;
+		.btn{
+			border: 1px solid #206;
+			&:first-child{
+				border-radius-top-left: 5px;
+				border-radius-bottom-left: 5px;
+			}
+			&:last-child{
+				border-radius-top-right: 5px;
+				border-radius-bottom-right: 5px;
+			}
+		}
+	}
+}

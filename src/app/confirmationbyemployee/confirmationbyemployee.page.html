@@ -1,0 +1,377 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>Konfirmasi Pembayaran</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+<!--	<div class="div-header">-->
+<!--		<label>-->
+<!--			<i class="far fa-receipt"></i> Card ID-->
+<!--			{{data.id}} - {{data.jobtitle}}-->
+<!--		</label>-->
+<!--	</div>-->
+	<div class="data-wrapper" [hidden]="ishidden">
+		<div class="data-left" *ngIf="!mutationtableshow">
+			<div class="left-top" *ngIf="paydialogshow">
+				<table class="table item-detail">
+					<ng-container *ngIf="paydialogstatus=='verified'">
+						<tbody>
+						<tr>
+							<td>Jumlah Bayar</td>
+							<td>{{paydialog.ammount}}</td>
+						</tr>
+						<tr>
+							<td colspan="2">Bank Asal (CUST)</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								{{paydialog.custbankname}}<br>
+								a/n. {{paydialog.custbankaccname}}
+								<ng-container *ngIf="paydialog.custbankaccno.length>0">
+									<br>
+									no. {{paydialog.custbankaccno}}
+								</ng-container>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">Bank Tujuan (COMP)</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								{{paydialog.compbankname}}<br>
+								a/n. {{paydialog.compbankaccname}}<br>
+								no. {{paydialog.compbankaccno}}
+							</td>
+						</tr>
+						<tr>
+							<td>Waktu Bayar</td>
+							<td>{{paydialog.paydate}}</td>
+						</tr>
+						<tr>
+							<td>Tanggal Verifikasi</td>
+							<td>{{paydialog.verifdate}}</td>
+						</tr>
+						<tr>
+							<td>Verifikator</td>
+							<td>{{paydialog.verifemployee}}</td>
+						</tr>
+						</tbody>
+					</ng-container>
+					<ng-container *ngIf="paydialogstatus=='notverif'">
+						<tbody>
+							<tr>
+								<td>Jumlah Bayar</td>
+								<td>{{paydialog.ammount}}</td>
+							</tr>
+							<tr>
+								<td colspan="2">Bank Asal (CUST)</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									{{paydialog.custbankname}}<br>
+									a/n. {{paydialog.custbankaccname}}
+									<ng-container *ngIf="paydialog.custbankaccno.length>0">
+										<br>
+										no. {{paydialog.custbankaccno}}
+									</ng-container>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">Bank Tujuan (COMP)</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									{{paydialog.compbankname}}<br>
+									a/n. {{paydialog.compbankaccname}}<br>
+									no. {{paydialog.compbankaccno}}
+								</td>
+							</tr>
+							<tr>
+								<td>Waktu Bayar</td>
+								<td>{{paydialog.paydate}}</td>
+							</tr>
+							<tr>
+								<td>Mutasi ID</td>
+								<td *ngIf="paydialog.companybankalias=='BCA'">
+									{{paydialog.customerbankmutationID}}
+									<button class="btn btn-sm btn-outline-primary" (click)="showmutation()">
+										Show Mutasi
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</ng-container>
+					<ng-container *ngIf="paydialogstatus=='nopayment'">
+						<tbody>
+							<tr>
+								<td>Jumlah Yang Harus Dibayar</td>
+								<td>{{paydialog.totalprice}}</td>
+							</tr>
+							<tr>
+								<td>Bank Asal (CUST)</td>
+								<td>
+									<ion-select [(ngModel)]="customerbankaccID" interface="action-sheet" (ionChange)="onchangecustomerbank($event)">
+										<ion-select-option *ngFor="let customerbank of salesnopayments[selectedsalesheaderindex].customer.customerbankacc" value="{{customerbank.id}}" [selected]="customerbank" class="select-text">
+											<ng-container *ngIf="customerbank.bank.alias!=''">
+												{{customerbank.bank.alias}} - {{customerbank.accname}} - {{customerbank.accno}}
+											</ng-container>
+											<ng-container *ngIf="customerbank.bank.alias==''">
+												{{customerbank.bank.bankname}} - {{customerbank.accname}}- {{customerbank.accno}}
+											</ng-container>
+										</ion-select-option>
+									</ion-select>
+									a/n {{paydialog.custbankaccname}}
+									{{paydialog.custbankaccno}}
+								</td>
+							</tr>
+							<tr>
+								<td>Bank Tujuan (COMP)</td>
+								<td>
+									<ion-select [(ngModel)]="selectedcompanybank" interface="action-sheet" (ionChange)="onchangecompanybank($event)">
+										<ion-select-option *ngFor="let selectedcompanybank of companybankaccs" value="{{selectedcompanybank.id}}" [selected]="selectedcompanybank.bank.alias == 'BCA'">
+											<ng-container *ngIf="selectedcompanybank.bank.alias!=''">
+												{{selectedcompanybank.bank.alias}} - {{selectedcompanybank.accname}} - {{selectedcompanybank.accno}}
+											</ng-container>
+											<ng-container *ngIf="selectedcompanybank.bank.alias==''">
+												{{selectedcompanybank.bank.bankname}} - {{selectedcompanybank.accname}}- {{selectedcompanybank.accno}}
+											</ng-container>
+										</ion-select-option>
+									</ion-select>
+									a/n {{paydialog.compbankaccname}}
+									{{paydialog.companybankaccno}}
+								</td>
+							</tr>
+							<tr>
+								<td>Waktu Transaksi</td>
+								<td>{{paydialog.salestime}}</td>
+							</tr>
+							<tr>
+								<td>Mutasi ID</td>
+								<td>
+									{{customerbankmutationID}}
+									<button class="btn btn-sm btn-outline-primary" (click)="showmutation()">
+										Show Mutasi
+									</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Tanggal Transfer
+								</td>
+								<td>
+									<ion-input (click)="showDatepicker()" [(ngModel)]="myDate" class="input-conf">
+										<i class="far fa-calendar-alt"></i>
+									</ion-input>
+								</td>
+							</tr>
+							<tr>
+								<td>Jumlah Transfer</td>
+								<ng-container *ngIf="paydialog.ammount!=0">
+									<td>{{paydialog.ammount}}</td>
+								</ng-container>
+								<ng-container *ngIf="paydialog.ammount==0">
+									<td>
+										<ion-input name="ammount" type="text" class="input-conf" [(ngModel)]="ammount"></ion-input>
+									</td>
+								</ng-container>
+								<td hidden>{{paydialog.customerID}}</td>
+							</tr>
+						</tbody>
+					</ng-container>
+					<div class="form-bottom">
+						<button class="btn btn-conf" (click)="konfirmasipembayaran(paydialog)">Konfirmasi Pembayaran</button>
+					</div>
+				</table>
+			</div>
+			<div class="left-bottom">
+				<div class="button-wrapper">
+					<button (click)="setshowsalestype('nopayment')" class="btn-payment">
+						Belum Bayar
+					</button>
+					<button (click)="setshowsalestype('paid')" class="btn-payment">
+						Sudah Bayar
+					</button>
+				</div>
+				<table class="table table-sm" *ngIf="!showsalesloading">
+					<ng-container *ngIf="showsalestypes=='paid'">
+						<tbody class="header" *ngFor="let notverif of salesnotverifs; let i = index;">
+						<tr class="detail" (click)="showsalespayment(notverif)" *ngFor="let detail of notverif.salesdetail">
+							<td>
+								<b>{{detail.cartheader.jobtitle}}</b>
+								{{detail.cartheader.quantity}}
+								{{detail.cartheader.quantitytypename}}
+							</td>
+							<td>
+								{{(detail.cartheader.printprice+detail.cartheader.deliveryprice-detail.cartheader.discount)|number:0}}
+							</td>
+						</tr>
+						<tr class="total" *ngIf="notverif.salesdetail.length>1">
+							<td class="text-xs-right">
+								Total
+							</td>
+							<td>
+								{{notverif.totalprice|number:0}}
+							</td>
+						</tr>
+						<ng-container *ngIf="notverif.salespaymentshow">
+							<ng-container *ngFor="let payment of notverif.salespayment">
+								<tr class="payment" (click)="showpaydialog(notverif, i, payment)">
+									<td>
+										{{payment.created_at}} => <b>{{payment.type}}</b>
+									</td>
+									<td>
+										{{(payment.ammount)|number:0}}
+									</td>
+								</tr>
+								<tr (click)="showpaydialog(notverif, i, payment)">
+									<td class="text-xs-center" colspan="2"><i>Tap here to edit</i></td>
+								</tr>
+							</ng-container>
+						</ng-container>
+					</tbody>
+					</ng-container>
+					<ng-container *ngIf="showsalestypes=='nopayment'">
+						<tbody *ngIf="!salesnopayments">
+							<tr>
+								<td>
+									Data sales tidak ada!.
+								</td>
+							</tr>
+						</tbody>
+						<ng-container *ngIf="salesnopayments">
+							<tbody class="header" *ngFor="let nopayment of salesnopayments; let i = index;">
+								<ng-container *ngIf="nopayment.salesdetail">
+									<tr class="detail" (click)="shownopaymentdialog(nopayment)" *ngFor="let detail of nopayment.salesdetail">
+										<td>
+											<b>{{detail.cartheader.jobtitle}}</b>
+											{{detail.cartheader.quantity}}
+											{{detail.cartheader.quantitytypename}}
+										</td>
+										<td>
+											{{(detail.cartheader.printprice+detail.cartheader.deliveryprice-detail.cartheader.discount)|number:0}}
+										</td>
+									</tr>
+									<tr class="total" *ngIf="nopayment.salesdetail.length>1">
+										<td class="text-xs-right">
+											Total
+										</td>
+										<td>
+											{{nopayment.totalprice|number:0}}
+										</td>
+									</tr>
+									<ng-container *ngIf="nopayment.salespaymentshow">
+										<tr class="payment" (click)="showpaydialog(nopayment, i, null)">
+											<td>
+												{{nopayment.created_at}}
+											</td>
+											<td>
+												-
+											</td>
+										</tr>
+										<tr (click)="showpaydialog(nopayment, i, null)">
+											<td class="text-xs-center" colspan="2"><i>Tap here to edit</i></td>
+										</tr>
+									</ng-container>
+								</ng-container>
+							</tbody>
+						</ng-container>
+					</ng-container>
+				</table>
+				<div *ngIf="!showsalesloading && showsalestypes == ''">
+					Error: Tidak bisa request (ajax) data.<br>
+					{{showsaleserrormessage}}
+				</div>
+				<div *ngIf="showsalesloading">
+					<i class="fas fa-spin fa-spinner fa-fw"></i>
+				</div>
+			</div>
+		</div>
+		<div class="data-right" *ngIf="mutationtableshow">
+			<div class="action-line">
+				<button class="btn btn-actionline" (click)="hidemutation()">
+					<i class="fas fa-chevron-left"> Back To Form</i>
+				</button>
+				<button class="btn btn-actionline" (click)="getbcarefresh()">
+					<i class="fas fa-sync"> Refresh Data</i>
+				</button>
+				<span *ngIf="global.curldownloading">
+					<i class="fas fa-spinner fa-spin fa-5x"></i>
+				</span>
+			</div>
+			<div class="refresh-line">
+			</div>
+			<ng-container *ngIf="global.curls.length>0">
+				<div class="detailtransaksibank-wrapper">
+					<table id="detailtransaksibank" class="table item-detail">
+						<thead>
+							<tr class="header">
+								<th colspan="4">
+									Detail Transaksi Bank
+								</th>
+							</tr>
+						</thead>
+						<tbody *ngFor="let curl of global.curls">
+							<tr (click)="showdetailcurl(curl)">
+								<td>{{curl.id}}</td>
+								<td>{{curl.mutationDate|date:'dd/MM/yyyy'}}</td>
+								<td>{{curl.name}}</td>
+								<td>{{curl.mutationAmmount|number:0}}</td>
+							</tr>
+							<tr *ngIf="paydialogstatus=='nopayment'">
+								<td *ngIf="curl.curlshow">
+									<ion-label>Customer Bank Acc</ion-label>
+									<ion-select [(ngModel)]="bank">
+										<ion-select-option *ngFor="let customerbank of salesnopayments[selectedsalesheaderindex].customer.customerbankacc" value="{{customerbank.id}}" [selected]="customerbank">
+											<ng-container *ngIf="customerbank.bank.alias!=''">.{{customerbank.bank.alias}}.
+												{{customerbank.bank.alias}} - {{customerbank.accname}} {{customerbank.accno}}
+											</ng-container>
+											<ng-container *ngIf="customerbank.bank.alias==''">
+												{{customerbank.bank.bankname}} - {{customerbank.accname}} {{customerbank.accno}}
+											</ng-container>
+										</ion-select-option>
+										<ion-select-option value="addcustbank">
+											Add Customer Bank
+										</ion-select-option>
+									</ion-select>
+									<button class="btn btn-sm btn-info" (click)="selectedmutation(curl)">
+										<i class="fas fa-check"> Apply</i>
+									</button>
+								</td>
+								<td *ngIf="bank=='addcustbank'">
+									<ion-item>
+										<ion-input [(ngModel)]="paydialog.custbankaccname" class="input-conf"></ion-input>
+									</ion-item>
+									<ion-item>
+										<ion-input [(ngModel)]="paydialog.custbankaccno" class="input-conf"></ion-input>
+									</ion-item>
+									<ion-item>
+										<ion-input [(ngModel)]="paydialog.custbankname" value="BCA"></ion-input>
+									</ion-item>
+									<button class="btn btn-sm" (click)="insertcustomerbankacc()">Save</button>
+								</td>
+							</tr>
+							<tr *ngIf="paydialogstatus=='notverified'">
+								<td *ngIf="curl.curlshow">
+									<ion-label>Customer Bank Acc</ion-label>
+									<ion-select [(ngModel)]="bank">
+										<ion-select-option *ngFor="let customerbank of salesnotverifs[selectedsalesheaderindex].customer.customerbankacc" value="{{customerbank.id}}" [selected]="customerbank">{{customerbank.bank.alias}}</ion-select-option>
+										<ion-select-option value="addcustbank">
+											Add Customer Bank
+										</ion-select-option>
+									</ion-select>
+									<button class="btn btn-sm btn-info" (click)="selectedmutation(curl)">
+										<i class="fas fa-check"> Apply</i>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</ng-container>
+		</div>
+	</div>
+</ion-content>

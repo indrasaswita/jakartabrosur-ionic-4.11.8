@@ -1,0 +1,30 @@
+<ion-content>
+	<div class="login-page">
+		<div class="icon">
+			<img src="../assets/logo-transp/logo-white-shadow-200px.png" width="200px" height="200px" />
+		</div>
+
+		{{global.onesignalID}}
+		<div class="input-botline">
+			<div class="title">USERNAME</div>
+			<ion-input type="email" name="username" placeholder="example@email.com" [(ngModel)]="username"></ion-input>
+		</div>
+		<div class="input-botline">
+			<div class="title">PASSWORD</div>
+			<ion-input type="password" name="password" placeholder="••••••••••" [(ngModel)]="password"></ion-input>
+		</div>
+		<ng-container *ngIf="loginresultstring!=null">
+			<div class="result-text" *ngIf="loginresultstring.length>0" [innerHTML]="loginresultstring"></div>
+		</ng-container>
+		<div class="action" *ngIf="!global.loginloading">
+			<button class="btn" id="login_btn" (click)="login_clicked()">
+				LOG IN !
+			</button>
+		</div>
+		{{global.loginloading}}
+		<div class="action" *ngIf="global.loginloading">
+			<i class="fal fa-spinner fa-spin"></i>
+			loading...
+		</div>
+	</div>
+</ion-content>
